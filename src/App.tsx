@@ -22,17 +22,9 @@ function App() {
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('Add to Cart', '/shop', { item: 'merch', quantity: 1 });
-					}}
-					style={{ margin: '10px 0 0 0' }}
-				>
-					Add Merch to Cart
-				</button>
-				<button
-					type="button"
-					onClick={() => {
-						// @ts-ignore
-						window.stonks.event('Apply Filter', '/products', { category: 'shoes', color: 'white' });
+						window.stonks.event('Apply Filter', '/products', {
+							theme: 'white',
+						});
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
@@ -42,7 +34,9 @@ function App() {
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('Apply Filter', '/products', { category: 'shoes', color: 'black' });
+						window.stonks.event('Apply Filter', '/products', {
+							theme: 'black',
+						});
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
@@ -52,41 +46,132 @@ function App() {
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('Customize Item', '/customizer', { size: 'M', theme: 'pink', color: 'green' });
+						window.stonks.event('Start Free Trial', '/pricing');
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
-					Customize Item - Size M, Pink Theme, Green Color
+					Start 14-day Free Trial
 				</button>
 				<button
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('Customize Item', '/customizer', { size: 'L', theme: 'blue' });
+						window.stonks.event('Use Filter Menu', '/dashboard', {
+							filterType: 'category',
+							value: 'clothing',
+						});
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
-					Customize Item - Size L, Blue Theme
+					Filter Products - Category "Clothing"
 				</button>
 				<button
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('User Interaction', '/', { action: 'greet', message: 'hello', status: true, id: 111 });
+						window.stonks.event('Use Filter Menu', '/dashboard', {
+							filterType: 'price',
+							value: 'under-50',
+						});
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
-					User Interaction - Message "hello", Status True, ID 111
+					Filter Products - Price "Under $50"
 				</button>
 				<button
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('User Interaction', '/', { action: 'greet', message: 'hi', status: false, id: 222 });
+						window.stonks.event('Customize Product', '/designer', {
+							productId: 'TSHIRT-2024',
+							color: 'pink',
+							size: 'XL',
+						});
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
-					User Interaction - Message "hi", Status False, ID 222
+					Customize T-Shirt - Pink/XL
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('Add to Wishlist', '/products/123', {
+							itemId: 'PREMIUM-SNEAKERS',
+							category: 'Footwear',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					Add Sneakers to Wishlist
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('Complete Onboarding', '/welcome', {
+							stepCompleted: 5,
+							totalSteps: 7,
+							userId: 'U-12345',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					Finish Onboarding Step 5/7
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('Submit Feedback', '/contact', {
+							feedbackType: 'feature-request',
+							message: 'Dark mode option',
+							rating: 4,
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					Submit Feature Request
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('Download Resource', '/resources/789', {
+							fileType: 'pdf',
+							fileSize: '2.4MB',
+							topic: 'React Best Practices',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					Download React PDF Guide
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('Change Theme Settings', '/settings', {
+							theme: 'dark',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					Enable Dark Mode
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('Upgrade Account', '/account/billing', {
+							currentPlan: 'basic',
+							newPlan: 'pro',
+							paymentMethod: 'credit_card',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					Upgrade to PRO Plan
 				</button>
 			</header>
 		</div>
