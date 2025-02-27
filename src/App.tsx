@@ -88,7 +88,7 @@ function App() {
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
-					Customize T-Shirt - Pink/XL
+					Pricing - Black Theme
 				</button>
 				<button
 					type="button"
