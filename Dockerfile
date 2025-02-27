@@ -1,32 +1,36 @@
-# Вказуємо базовий образ
-FROM node:20 AS build
-
-# Встановлюємо робочу директорію
+# Stage 1: Build the React app
+FROM node:18-alpine AS build
 WORKDIR /app
 
-# Копіюємо package.json та package-lock.json
-COPY package*.json ./
+# Leverage caching by installing dependencies first
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Встановлюємо залежності
-RUN npm install --frozen-lockfile
-
-# Копіюємо решту файлів проєкту
-COPY . .
-
-# Збираємо застосунок
+# Copy the rest of the application code and build for production
+COPY . ./
 RUN npm run build
 
-# Використовуємо легковаговий образ Nginx для розгортання
-FROM nginx:alpine
+# Stage 2: Development environment
+FROM node:18-alpine AS development
+WORKDIR /app
 
-# Копіюємо зібрані файли у кореневу директорію Nginx
+# Install dependencies again for development
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# Copy the full source code
+COPY . ./
+
+# Expose port for the development server
+EXPOSE 3000
+CMD ["npm", "start"]
+
+# Stage 3: Production environment
+FROM nginx:alpine AS production
+
+# Copy the production build artifacts from the build stage
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Копіюємо файл конфігурації Nginx (опціонально)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# Відкриваємо порт
-EXPOSE 8080
-
-# Запускаємо Nginx
-CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
+# Expose the default NGINX port
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
