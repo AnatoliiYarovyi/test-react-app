@@ -82,10 +82,8 @@ function App() {
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('Customize Product', '/designer', {
-							productId: 'TSHIRT-2024',
-							color: 'pink',
-							size: 'XL',
+						window.stonks.event('Pricing', '/pricing', {
+							theme: 'black',
 						});
 					}}
 					style={{ margin: '10px 0 0 0' }}
@@ -137,11 +135,15 @@ function App() {
 					type="button"
 					onClick={() => {
 						// @ts-ignore
-						window.stonks.event('Download Resource', '/resources/789', {
-							fileType: 'pdf',
-							fileSize: '2.4MB',
-							topic: 'React Best Practices',
-						});
+						window.stonks.event(
+							'Download PDF documentation',
+							'/resources/789',
+							{
+								fileType: 'pdf',
+								fileSize: '2.4MB',
+								topic: 'React Best Practices',
+							}
+						);
 					}}
 					style={{ margin: '10px 0 0 0' }}
 				>
