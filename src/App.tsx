@@ -22,6 +22,30 @@ function App() {
 					type="button"
 					onClick={() => {
 						// @ts-ignore
+						window.stonks.event('test', '/', {
+							dialect: 'sqlite',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					test dialect: 'sqlite'
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
+						window.stonks.event('test-2', '/', {
+							dialect: 'sqlite',
+						});
+					}}
+					style={{ margin: '10px 0 0 0' }}
+				>
+					test-2 dialect: 'sqlite'
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						// @ts-ignore
 						window.stonks.event('Apply Filter', '/products', {
 							theme: 'white',
 						});
